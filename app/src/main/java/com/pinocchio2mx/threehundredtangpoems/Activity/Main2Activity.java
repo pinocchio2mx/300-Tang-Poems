@@ -1,4 +1,4 @@
-package com.pinocchio2mx.threehundredtangpoems;
+package com.pinocchio2mx.threehundredtangpoems.Activity;
 
 import android.annotation.TargetApi;
 import android.graphics.Color;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.pinocchio2mx.threehundredtangpoems.R;
 
 public class Main2Activity extends AppCompatActivity {
 

@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
 
 
-    tools:context="com.pinocchio2mx.threehundredtangpoems.Main2Activity">
+    tools:context="com.pinocchio2mx.threehundredtangpoems.Activity.Main2Activity">
 
 
     <android.support.v7.widget.Toolbar

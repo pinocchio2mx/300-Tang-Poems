@@ -3,7 +3,7 @@
              android:id="@+id/fragment_poem_list"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="com.pinocchio2mx.threehundredtangpoems.PoemListFragment">
+             tools:context="com.pinocchio2mx.threehundredtangpoems.Fragment.PoemListFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

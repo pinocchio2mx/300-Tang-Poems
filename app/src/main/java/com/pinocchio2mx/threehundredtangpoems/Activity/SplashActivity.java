@@ -1,12 +1,13 @@
-package com.pinocchio2mx.threehundredtangpoems;
+package com.pinocchio2mx.threehundredtangpoems.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.pinocchio2mx.threehundredtangpoems.R;
 
 public class SplashActivity extends AppCompatActivity {
     private static  final int Delay_MILLIS = 1500;

@@ -1,4 +1,4 @@
-package com.pinocchio2mx.threehundredtangpoems;
+package com.pinocchio2mx.threehundredtangpoems.Activity;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -10,8 +10,11 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import com.pinocchio2mx.threehundredtangpoems.Fragment.PoemListFragment;
+import com.pinocchio2mx.threehundredtangpoems.R;
+
 public class MainActivity extends AppCompatActivity
-        implements PoemListFragment.OnPoemSelectedListener{
+        implements PoemListFragment.OnPoemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
