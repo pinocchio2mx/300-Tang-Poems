@@ -30,10 +30,7 @@
         </activity>
         <activity android:name=".Activity.Main2Activity">
         </activity>
-        <activity
-            android:name=".Activity.BaseActivity"
-            android:label="@string/title_activity_base"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".Activity.BaseFragmentActivity">
         </activity>
     </application>
 

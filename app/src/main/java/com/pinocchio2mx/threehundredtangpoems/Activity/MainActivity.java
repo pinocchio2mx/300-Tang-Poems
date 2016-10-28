@@ -13,40 +13,44 @@ import android.view.WindowManager;
 import com.pinocchio2mx.threehundredtangpoems.Fragment.PoemListFragment;
 import com.pinocchio2mx.threehundredtangpoems.R;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseFragmentActivity
         implements PoemListFragment.OnPoemSelectedListener {
 
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        //setContentView(R.layout.activity_main);
+//        initWindow();
+//
+////        if(findViewById(R.id.fragment_poem_list) != null) {
+////            if (savedInstanceState != null) {
+////                return;
+////            }
+////        }
+//
+//
+////        Fragment poemListFragment = new PoemListFragment();
+////        poemListFragment.setArguments(getIntent().getExtras());
+////        getSupportFragmentManager().beginTransaction()
+////                .add(R.id.fragment_container,poemListFragment)
+////                .commit();
+//
+//    }
+//    @TargetApi(19)
+//    private void initWindow(){
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+////            //  设置根布局的参数
+////            ViewGroup rootView = (ViewGroup) ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+////            ViewCompat.setFitsSystemWindows(rootView,true);
+////            rootView.setClipToPadding(true);
+//        }
+//    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        initWindow();
-
-        if(findViewById(R.id.fragment_poem_list) != null){
-            if(savedInstanceState != null){
-                return;
-            }
-
-        }
-
-        Fragment poemListFragment = new PoemListFragment();
-        poemListFragment.setArguments(getIntent().getExtras());
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container,poemListFragment)
-                .commit();
-
-    }
-    @TargetApi(19)
-    private void initWindow(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            //  设置根布局的参数
-            ViewGroup rootView = (ViewGroup) ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
-            ViewCompat.setFitsSystemWindows(rootView,true);
-            rootView.setClipToPadding(true);
-        }
+    protected Fragment getFragment() {
+        return new PoemListFragment();
     }
 
     @Override
