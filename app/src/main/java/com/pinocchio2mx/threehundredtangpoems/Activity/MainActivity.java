@@ -3,18 +3,25 @@ package com.pinocchio2mx.threehundredtangpoems.Activity;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import com.pinocchio2mx.threehundredtangpoems.Fragment.PoemFragment;
 import com.pinocchio2mx.threehundredtangpoems.Fragment.PoemListFragment;
 import com.pinocchio2mx.threehundredtangpoems.R;
 
+
+import static com.pinocchio2mx.threehundredtangpoems.R.id.fragment_container;
+
 public class MainActivity extends BaseFragmentActivity
-        implements PoemListFragment.OnPoemSelectedListener {
+        implements PoemListFragment.OnPoemSelectedListener,
+        PoemFragment.OnTextSelectedListener{
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +56,14 @@ public class MainActivity extends BaseFragmentActivity
 //    }
 
     @Override
+    protected int getLayoutResID() {
+        return R.layout.activity_main;
+    }
+    @Override
     protected Fragment getFragment() {
         return new PoemListFragment();
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -60,6 +72,24 @@ public class MainActivity extends BaseFragmentActivity
 
     @Override
     public void onPoemSelected(int PoemID) {
+
+        FragmentManager fm=getSupportFragmentManager();
+        Fragment fragment = new PoemFragment();
+
+        fm.beginTransaction()
+                .replace(fragment_container,fragment)
+                .addToBackStack("1")
+                .commit();
+
+    }
+    @Override
+    public void onTextSelected(int TextID) {
+        FragmentManager fm=getSupportFragmentManager();
+        Fragment fragment = new PoemListFragment();
+
+        fm.beginTransaction()
+                .replace(R.id.fragment_container,fragment)
+                .commit();
 
     }
 }

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.pinocchio2mx.threehundredtangpoems.R;
 
@@ -29,7 +30,10 @@ public class PoemFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnTextSelectedListener mListener;
+    private Button mButton;
+
+
 
     public PoemFragment() {
         // Required empty public constructor
@@ -66,21 +70,31 @@ public class PoemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_poem, container, false);
+        View view = inflater.inflate(R.layout.fragment_poem, container, false);
+        mButton = (Button) view.findViewById(R.id.Poemlist_button);
+        mButton.setOnClickListener(new  View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                mListener.onTextSelected(2);
+            }
+        });
+
+
+        return  view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onTextSelected(uri);
+//        }
+//    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof PoemFragment.OnTextSelectedListener) {
+            mListener = (PoemFragment.OnTextSelectedListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -103,8 +117,8 @@ public class PoemFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnTextSelectedListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onTextSelected(int TextID);
     }
 }

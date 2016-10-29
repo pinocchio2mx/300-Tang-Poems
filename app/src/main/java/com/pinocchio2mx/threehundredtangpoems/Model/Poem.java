@@ -7,58 +7,27 @@ import java.util.UUID;
  */
 
 public class Poem {
-    private UUID mId;
+    private String mTitle;
+    private String mAuthor;
 
-    private String mString1;
-    private String mString2;
-    private String mString3;
-    private String mString4;
-    private Boolean mFavorited;
-
-    public UUID getId() {
-        return mId;
+    public Poem(String author, String title) {
+        mAuthor = author;
+        mTitle = title;
     }
 
-    public String getString1() {
-        return mString1;
+    public String getAuthor() {
+        return mAuthor;
     }
 
-    public void setString1(String string1) {
-        mString1 = string1;
+    public void setAuthor(String author) {
+        mAuthor = author;
     }
 
-
-    public String getString2() {
-        return mString2;
+    public String getTitle() {
+        return mTitle;
     }
 
-    public void setString2(String string2) {
-        mString2 = string2;
+    public void setTitle(String title) {
+        mTitle = title;
     }
-
-    public String getString3() {
-        return mString3;
-    }
-
-    public void setString3(String string3) {
-        mString3 = string3;
-    }
-
-    public String getString4() {
-        return mString4;
-    }
-
-    public void setString4(String string4) {
-        mString4 = string4;
-    }
-
-    public Boolean isFavorited() {
-        return mFavorited;
-    }
-
-    public void setFavorited(Boolean favorited) {
-        mFavorited = favorited;
-    }
-
-
 }

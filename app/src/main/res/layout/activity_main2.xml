@@ -13,6 +13,7 @@
     tools:context="com.pinocchio2mx.threehundredtangpoems.Activity.Main2Activity">
 
 
+
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
