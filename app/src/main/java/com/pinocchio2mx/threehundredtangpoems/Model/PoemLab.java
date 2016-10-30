@@ -16,8 +16,8 @@ public class PoemLab {
 
     private PoemLab(Context context) {
         mPoems = new ArrayList<>();
-        for (int i=0;i < 200 ; i++){
-            Poem poem = new Poem("title"+i,"author"+i);
+        for (int i=1;i < 21 ; i++){
+            Poem poem = new Poem("标题"+i,"作者"+i,"正文"+i);
             mPoems.add(poem);
         }
     }

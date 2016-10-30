@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="10dp">
-</TextView>
+<LinearLayout xmlns:Android="http://schemas.android.com/apk/res/android"
+    Android:layout_width="wrap_content"
+    Android:layout_height="wrap_content"
+    Android:orientation="vertical">
+    <TextView
+        Android:id="@+id/title_textview"
+        Android:layout_width="wrap_content"
+        Android:layout_height="wrap_content"
+        Android:textStyle="bold"
+        Android:padding="4dp"/>
+    <TextView
+        Android:id="@+id/author_textview"
+        Android:layout_width="wrap_content"
+        Android:layout_height="wrap_content"
+        Android:textStyle="italic"
+        Android:padding="4dp"/>
+    <TextView
+        Android:id="@+id/content_textview"
+        Android:layout_width="wrap_content"
+        Android:layout_height="wrap_content"
+        Android:textStyle="normal"
+        Android:padding="4dp"/>
+</LinearLayout>

@@ -9,10 +9,12 @@ import java.util.UUID;
 public class Poem {
     private String mTitle;
     private String mAuthor;
+    private String mContent;
 
-    public Poem(String author, String title) {
-        mAuthor = author;
+    public Poem(String title,String author,String content) {
         mTitle = title;
+        mAuthor = author;
+        mContent = content;
     }
 
     public String getAuthor() {
@@ -29,5 +31,12 @@ public class Poem {
 
     public void setTitle(String title) {
         mTitle = title;
+    }
+    public String getContent() {
+        return mContent;
+    }
+
+    public void setContent(String content) {
+        mContent = content;
     }
 }

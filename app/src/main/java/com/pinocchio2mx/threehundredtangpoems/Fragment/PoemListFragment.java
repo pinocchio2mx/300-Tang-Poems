@@ -1,10 +1,12 @@
 package com.pinocchio2mx.threehundredtangpoems.Fragment;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.MenuPopupWindow;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.ToolbarWidgetWrapper;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pinocchio2mx.threehundredtangpoems.CommnenUtils;
 import com.pinocchio2mx.threehundredtangpoems.Model.Poem;
 import com.pinocchio2mx.threehundredtangpoems.Model.PoemLab;
 import com.pinocchio2mx.threehundredtangpoems.R;
@@ -25,7 +28,12 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+import static android.R.attr.autoAdvanceViewId;
 import static android.R.attr.onClick;
+import static android.R.attr.typeface;
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
+import static android.os.Build.VERSION_CODES.M;
+import static com.pinocchio2mx.threehundredtangpoems.CommnenUtils.showToast;
 
 public class PoemListFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -37,11 +45,12 @@ public class PoemListFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private Typeface mTypeface;
+
     private OnPoemSelectedListener mListener;
-    private Toolbar mToolbarContainer;
-    private Button mButton;
     private RecyclerView mPoemListRecyclerView;
     private PoemAdapter mAdapter;
+    private Button mButton;
 
 
     public PoemListFragment() {
@@ -72,59 +81,63 @@ public class PoemListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_poem_list, container, false);
-        //mToolbarContainer = (Toolbar) view.findViewById(R.id.toolbar);
+
+        mButton = (Button) view.findViewById(R.id.button);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onPoemSelected(1);
+            }
+        });
+
         mPoemListRecyclerView = (RecyclerView)view.findViewById(R.id.poem_list_recyclerview);
         mPoemListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if (mTypeface == null) {
+            mTypeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/simsun.ttc");
+        }
         updateUI();
-
-
-
-
-
-
-
-
-
-
-
         return  view;
     }
 
     private void updateUI() {
         PoemLab poemlab = PoemLab.get(getActivity());
         List<Poem> poems = poemlab.getPoems();
-        mAdapter = new PoemAdapter(poems);
-        mPoemListRecyclerView.setAdapter(mAdapter);
+        if(mAdapter == null ){
+            mAdapter = new PoemAdapter(poems);
+            mPoemListRecyclerView.setAdapter(mAdapter);
+        }else{
+            mPoemListRecyclerView.setAdapter(mAdapter);
+        }
     }
 
     private class PoemHolder extends RecyclerView.ViewHolder
     implements View.OnClickListener{
-        public TextView mTitleTextView;
+        private TextView mTitleTextView;
+        private TextView mAuthorTextView;
+        private TextView mContenTextView;
+        private Poem mPoem;
+
 
         public PoemHolder(View itemview){
             super(itemview);
             itemview.setOnClickListener(this);
-            mTitleTextView=(TextView)itemview;
+            mTitleTextView = (TextView)itemview.findViewById(R.id.title_textview);
+            mAuthorTextView = (TextView)itemview.findViewById(R.id.author_textview);
+            mContenTextView = (TextView)itemview.findViewById(R.id.content_textview);
+            mContenTextView.setTypeface(mTypeface);
 
+        }
+        public void bindPoem(Poem poem){
+            mPoem = poem;
+            mTitleTextView.setText(poem.getTitle());
+            mAuthorTextView.setText(poem.getAuthor());
+            mContenTextView.setText(poem.getContent());
         }
 
         @Override
         public void onClick(View v) {
             mListener.onPoemSelected(1);
+            //CommnenUtils.showToast(getActivity(),mPoem.getTitle()+" clicked !",Toast.LENGTH_SHORT);
         }
     }
     private class PoemAdapter extends RecyclerView.Adapter<PoemHolder>{
@@ -144,7 +157,7 @@ public class PoemListFragment extends Fragment {
         @Override
         public void onBindViewHolder(PoemHolder holder, int position) {
             Poem poem = mPoems.get(position);
-            holder.mTitleTextView.setText(poem.getTitle());
+            holder.bindPoem(poem);
 
         }
 
@@ -172,6 +185,12 @@ public class PoemListFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        //updateUI();
+//    }
 
     @Override
     public void onDetach() {

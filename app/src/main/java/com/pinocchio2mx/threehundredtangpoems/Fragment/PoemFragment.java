@@ -31,7 +31,6 @@ public class PoemFragment extends Fragment {
     private String mParam2;
 
     private OnTextSelectedListener mListener;
-    private Button mButton;
 
 
 
@@ -71,13 +70,6 @@ public class PoemFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_poem, container, false);
-        mButton = (Button) view.findViewById(R.id.Poemlist_button);
-        mButton.setOnClickListener(new  View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                mListener.onTextSelected(2);
-            }
-        });
 
 
         return  view;

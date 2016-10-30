@@ -17,6 +17,7 @@ import com.pinocchio2mx.threehundredtangpoems.Fragment.PoemListFragment;
 import com.pinocchio2mx.threehundredtangpoems.R;
 
 
+import static android.R.attr.fragment;
 import static com.pinocchio2mx.threehundredtangpoems.R.id.fragment_container;
 
 public class MainActivity extends BaseFragmentActivity
@@ -57,6 +58,7 @@ public class MainActivity extends BaseFragmentActivity
 
     @Override
     protected int getLayoutResID() {
+
         return R.layout.activity_main;
     }
     @Override
@@ -73,23 +75,33 @@ public class MainActivity extends BaseFragmentActivity
     @Override
     public void onPoemSelected(int PoemID) {
 
-        FragmentManager fm=getSupportFragmentManager();
-        Fragment fragment = new PoemFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentByTag("1");
+        if (fragment == null) {
+            fragment = new PoemFragment();
+            fm.beginTransaction()
+                    .replace(fragment_container, fragment)
+                    .addToBackStack("1")
+                    .commit();
+        }
 
-        fm.beginTransaction()
-                .replace(fragment_container,fragment)
-                .addToBackStack("1")
-                .commit();
-
+//        Fragment fragment = new PoemFragment();
+//        fm.beginTransaction()
+//                .replace(fragment_container, fragment)
+//                .addToBackStack("1")
+//                .commit();
     }
     @Override
     public void onTextSelected(int TextID) {
         FragmentManager fm=getSupportFragmentManager();
-        Fragment fragment = new PoemListFragment();
-
-        fm.beginTransaction()
-                .replace(R.id.fragment_container,fragment)
-                .commit();
+        Fragment fragment=fm.findFragmentByTag("2");
+        if(fragment == null) {
+            fragment = new PoemListFragment();
+            fm.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack("2")
+                    .commit();
+        }
 
     }
 }

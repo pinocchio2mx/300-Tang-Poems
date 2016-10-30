@@ -13,6 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:title="唐诗"/>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="青玉案"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/poem_list_recyclerview"
