@@ -1,10 +1,12 @@
 package com.pinocchio2mx.threehundredtangpoems.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.MenuPopupWindow;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +21,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pinocchio2mx.threehundredtangpoems.Activity.PoemPagerActivity;
 import com.pinocchio2mx.threehundredtangpoems.CommnenUtils;
 import com.pinocchio2mx.threehundredtangpoems.Model.Poem;
 import com.pinocchio2mx.threehundredtangpoems.Model.PoemLab;
@@ -86,7 +89,11 @@ public class PoemListFragment extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onPoemSelected(1);
+                FragmentManager fm = getFragmentManager();
+                DatePickerFragment dialog = new DatePickerFragment();
+                dialog.show(fm,"Date");
+
+                //mListener.onPoemSelected(1);
             }
         });
 
@@ -136,7 +143,9 @@ public class PoemListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            mListener.onPoemSelected(1);
+            Intent i = PoemPagerActivity.newIntent(getActivity());
+            startActivity(i);
+            //mListener.onPoemSelected(1);
             //CommnenUtils.showToast(getActivity(),mPoem.getTitle()+" clicked !",Toast.LENGTH_SHORT);
         }
     }
