@@ -1,6 +1,4 @@
-package com.pinocchio2mx.threehundredtangpoems.Model;
-
-import java.util.UUID;
+package com.pinocchio2mx.threehundredtangpoems.model;
 
 /**
  * Created by pinocchio2mx on 2016/10/28.

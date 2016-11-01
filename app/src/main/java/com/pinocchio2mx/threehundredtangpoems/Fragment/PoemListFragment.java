@@ -1,4 +1,4 @@
-package com.pinocchio2mx.threehundredtangpoems.Fragment;
+package com.pinocchio2mx.threehundredtangpoems.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,36 +7,27 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.MenuPopupWindow;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.ToolbarWidgetWrapper;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.pinocchio2mx.threehundredtangpoems.Activity.PoemPagerActivity;
-import com.pinocchio2mx.threehundredtangpoems.CommnenUtils;
-import com.pinocchio2mx.threehundredtangpoems.Model.Poem;
-import com.pinocchio2mx.threehundredtangpoems.Model.PoemLab;
+import com.pinocchio2mx.threehundredtangpoems.PoemPagerActivity;
+import com.pinocchio2mx.threehundredtangpoems.model.Poem;
+import com.pinocchio2mx.threehundredtangpoems.model.PoemLab;
 import com.pinocchio2mx.threehundredtangpoems.R;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
-import static android.R.attr.autoAdvanceViewId;
-import static android.R.attr.onClick;
-import static android.R.attr.typeface;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
-import static android.os.Build.VERSION_CODES.M;
-import static com.pinocchio2mx.threehundredtangpoems.CommnenUtils.showToast;
+import static com.pinocchio2mx.threehundredtangpoems.R.id.toolbar;
 
 public class PoemListFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -54,6 +45,8 @@ public class PoemListFragment extends Fragment {
     private RecyclerView mPoemListRecyclerView;
     private PoemAdapter mAdapter;
     private Button mButton;
+    private Toolbar mToolbar;
+    AppCompatActivity mAppCompatActivity;
 
 
     public PoemListFragment() {
@@ -77,15 +70,25 @@ public class PoemListFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_poem_list, container, false);
+        View v = inflater.inflate(R.layout.fragment_poem_list, container, false);
 
-        mButton = (Button) view.findViewById(R.id.button);
+
+        setHasOptionsMenu(true);
+        mToolbar = (Toolbar)v.findViewById(R.id.toolbar);
+        AppCompatActivity mAppCompatActivity = (AppCompatActivity)getActivity();
+        mAppCompatActivity.setSupportActionBar(mToolbar);
+
+
+
+
+        mButton = (Button) v.findViewById(R.id.button);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,13 +100,13 @@ public class PoemListFragment extends Fragment {
             }
         });
 
-        mPoemListRecyclerView = (RecyclerView)view.findViewById(R.id.poem_list_recyclerview);
+        mPoemListRecyclerView = (RecyclerView)v.findViewById(R.id.poem_list_recyclerview);
         mPoemListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         if (mTypeface == null) {
             mTypeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/simsun.ttc");
         }
         updateUI();
-        return  view;
+        return  v;
     }
 
     private void updateUI() {
@@ -207,6 +210,16 @@ public class PoemListFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_fragment_poem_list,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
 
     public interface OnPoemSelectedListener {
         // TODO: Update argument type and name

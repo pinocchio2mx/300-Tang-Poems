@@ -1,28 +1,24 @@
-package com.pinocchio2mx.threehundredtangpoems.Activity;
+package com.pinocchio2mx.threehundredtangpoems;
 
-import android.annotation.TargetApi;
-import android.os.Build;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Toast;
 
-import com.pinocchio2mx.threehundredtangpoems.Fragment.PoemFragment;
-import com.pinocchio2mx.threehundredtangpoems.Fragment.PoemListFragment;
-import com.pinocchio2mx.threehundredtangpoems.R;
+import com.pinocchio2mx.threehundredtangpoems.fragment.PoemFragment;
+import com.pinocchio2mx.threehundredtangpoems.fragment.PoemListFragment;
 
 
-import static android.R.attr.fragment;
 import static com.pinocchio2mx.threehundredtangpoems.R.id.fragment_container;
 
 public class MainActivity extends BaseFragmentActivity
         implements PoemListFragment.OnPoemSelectedListener,
-        PoemFragment.OnTextSelectedListener{
+        PoemFragment.OnTextSelectedListener {
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +33,7 @@ public class MainActivity extends BaseFragmentActivity
 ////        }
 //
 //
-////        Fragment poemListFragment = new PoemListFragment();
+////        fragment poemListFragment = new PoemListFragment();
 ////        poemListFragment.setArguments(getIntent().getExtras());
 ////        getSupportFragmentManager().beginTransaction()
 ////                .add(R.id.fragment_container,poemListFragment)
@@ -61,6 +57,7 @@ public class MainActivity extends BaseFragmentActivity
 
         return R.layout.activity_main;
     }
+
     @Override
     protected Fragment getFragment() {
         return new PoemListFragment();
@@ -85,17 +82,18 @@ public class MainActivity extends BaseFragmentActivity
                     .commit();
         }
 
-//        Fragment fragment = new PoemFragment();
+//        fragment fragment = new PoemFragment();
 //        fm.beginTransaction()
 //                .replace(fragment_container, fragment)
 //                .addToBackStack("1")
 //                .commit();
     }
+
     @Override
     public void onTextSelected(int TextID) {
-        FragmentManager fm=getSupportFragmentManager();
-        Fragment fragment=fm.findFragmentByTag("2");
-        if(fragment == null) {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentByTag("2");
+        if (fragment == null) {
             fragment = new PoemListFragment();
             fm.beginTransaction()
                     .replace(R.id.fragment_container, fragment)
@@ -104,4 +102,5 @@ public class MainActivity extends BaseFragmentActivity
         }
 
     }
+
 }

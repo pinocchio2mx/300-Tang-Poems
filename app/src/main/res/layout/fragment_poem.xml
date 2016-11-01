@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:id="@+id/fragment_poem" android:orientation="vertical"
@@ -5,7 +6,7 @@
              android:layout_height="match_parent"
               android:layout_marginLeft="10dp"
               android:layout_marginRight="10dp"
-             tools:context="com.pinocchio2mx.threehundredtangpoems.Fragment.PoemFragment">
+             tools:context="com.pinocchio2mx.threehundredtangpoems.fragment.PoemFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

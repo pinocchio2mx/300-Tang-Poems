@@ -1,19 +1,10 @@
-package com.pinocchio2mx.threehundredtangpoems.Activity;
+package com.pinocchio2mx.threehundredtangpoems;
 
 import android.annotation.TargetApi;
-import android.graphics.Color;
 import android.os.Build;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
-
-import com.pinocchio2mx.threehundredtangpoems.Fragment.PoemListFragment;
-import com.pinocchio2mx.threehundredtangpoems.R;
 
 public class Main2Activity extends AppCompatActivity {
 

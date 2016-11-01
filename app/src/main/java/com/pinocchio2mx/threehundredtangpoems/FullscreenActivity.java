@@ -1,4 +1,4 @@
-package com.pinocchio2mx.threehundredtangpoems.Activity;
+package com.pinocchio2mx.threehundredtangpoems;
 
 import android.annotation.SuppressLint;
 import android.support.v7.app.ActionBar;

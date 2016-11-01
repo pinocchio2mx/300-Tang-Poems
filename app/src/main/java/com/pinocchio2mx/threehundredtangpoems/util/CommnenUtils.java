@@ -1,4 +1,4 @@
-package com.pinocchio2mx.threehundredtangpoems;
+package com.pinocchio2mx.threehundredtangpoems.util;
 
 import android.content.Context;
 import android.widget.Toast;

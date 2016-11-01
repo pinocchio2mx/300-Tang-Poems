@@ -1,25 +1,17 @@
-package com.pinocchio2mx.threehundredtangpoems.Activity;
+package com.pinocchio2mx.threehundredtangpoems;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.ShareCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.pinocchio2mx.threehundredtangpoems.Fragment.PoemFragment;
-import com.pinocchio2mx.threehundredtangpoems.Model.Poem;
-import com.pinocchio2mx.threehundredtangpoems.Model.PoemLab;
-import com.pinocchio2mx.threehundredtangpoems.R;
+import com.pinocchio2mx.threehundredtangpoems.fragment.PoemFragment;
+import com.pinocchio2mx.threehundredtangpoems.model.Poem;
+import com.pinocchio2mx.threehundredtangpoems.model.PoemLab;
 
 import java.util.List;
 

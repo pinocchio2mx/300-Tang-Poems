@@ -1,4 +1,4 @@
-package com.pinocchio2mx.threehundredtangpoems.Activity;
+package com.pinocchio2mx.threehundredtangpoems;
 
 import android.content.res.Resources;
 import android.support.annotation.LayoutRes;

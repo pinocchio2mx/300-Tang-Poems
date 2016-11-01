@@ -1,7 +1,6 @@
-package com.pinocchio2mx.threehundredtangpoems.Model;
+package com.pinocchio2mx.threehundredtangpoems.model;
 
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
