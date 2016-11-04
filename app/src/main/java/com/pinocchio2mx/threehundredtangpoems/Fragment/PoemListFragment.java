@@ -2,6 +2,7 @@ package com.pinocchio2mx.threehundredtangpoems.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,10 +18,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.pinocchio2mx.threehundredtangpoems.PoemPagerActivity;
+import com.pinocchio2mx.threehundredtangpoems.adapter.PoemAdapter;
+import com.pinocchio2mx.threehundredtangpoems.adapter.PoemListAdapter;
+import com.pinocchio2mx.threehundredtangpoems.adapter.RecyclerViewCursorAdapter;
+import com.pinocchio2mx.threehundredtangpoems.databse.PoemDatabase;
 import com.pinocchio2mx.threehundredtangpoems.model.Poem;
 import com.pinocchio2mx.threehundredtangpoems.model.PoemLab;
 import com.pinocchio2mx.threehundredtangpoems.R;
@@ -43,10 +49,16 @@ public class PoemListFragment extends Fragment {
 
     private OnPoemSelectedListener mListener;
     private RecyclerView mPoemListRecyclerView;
-    private PoemAdapter mAdapter;
+    //private PoemAdapter mAdapter;
+    private PoemListAdapter mAdapter;
     private Button mButton;
     private Toolbar mToolbar;
     AppCompatActivity mAppCompatActivity;
+
+    private PoemDatabase db;
+    private Cursor cursor;
+
+
 
 
     public PoemListFragment() {
@@ -88,18 +100,6 @@ public class PoemListFragment extends Fragment {
 
 
 
-        mButton = (Button) v.findViewById(R.id.button);
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
-                DatePickerFragment dialog = new DatePickerFragment();
-                dialog.show(fm,"Date");
-
-                //mListener.onPoemSelected(1);
-            }
-        });
-
         mPoemListRecyclerView = (RecyclerView)v.findViewById(R.id.poem_list_recyclerview);
         mPoemListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         if (mTypeface == null) {
@@ -110,74 +110,21 @@ public class PoemListFragment extends Fragment {
     }
 
     private void updateUI() {
-        PoemLab poemlab = PoemLab.get(getActivity());
-        List<Poem> poems = poemlab.getPoems();
+//        PoemLab poemlab = PoemLab.get(getActivity());
+//        List<Poem> poems = poemlab.getPoems();
         if(mAdapter == null ){
-            mAdapter = new PoemAdapter(poems);
+            db = new PoemDatabase(getContext());
+            cursor= db.getPoems();
+            mAdapter = new PoemListAdapter(getContext(),cursor,0);
+            //mAdapter = new PoemAdapter(poems);
             mPoemListRecyclerView.setAdapter(mAdapter);
         }else{
             mPoemListRecyclerView.setAdapter(mAdapter);
         }
     }
 
-    private class PoemHolder extends RecyclerView.ViewHolder
-    implements View.OnClickListener{
-        private TextView mTitleTextView;
-        private TextView mAuthorTextView;
-        private TextView mContenTextView;
-        private Poem mPoem;
 
 
-        public PoemHolder(View itemview){
-            super(itemview);
-            itemview.setOnClickListener(this);
-            mTitleTextView = (TextView)itemview.findViewById(R.id.title_textview);
-            mAuthorTextView = (TextView)itemview.findViewById(R.id.author_textview);
-            mContenTextView = (TextView)itemview.findViewById(R.id.content_textview);
-            mContenTextView.setTypeface(mTypeface);
-
-        }
-        public void bindPoem(Poem poem){
-            mPoem = poem;
-            mTitleTextView.setText(poem.getTitle());
-            mAuthorTextView.setText(poem.getAuthor());
-            mContenTextView.setText(poem.getContent());
-        }
-
-        @Override
-        public void onClick(View v) {
-            Intent i = PoemPagerActivity.newIntent(getActivity());
-            startActivity(i);
-            //mListener.onPoemSelected(1);
-            //CommnenUtils.showToast(getActivity(),mPoem.getTitle()+" clicked !",Toast.LENGTH_SHORT);
-        }
-    }
-    private class PoemAdapter extends RecyclerView.Adapter<PoemHolder>{
-        private List<Poem> mPoems;
-
-        public PoemAdapter(List<Poem> poems) {
-            mPoems = poems;
-        }
-
-        @Override
-        public PoemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View view = layoutInflater.inflate(R.layout.poem_list_item,parent,false);
-            return new PoemHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(PoemHolder holder, int position) {
-            Poem poem = mPoems.get(position);
-            holder.bindPoem(poem);
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return mPoems.size();
-        }
-    }
 
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -208,6 +155,8 @@ public class PoemListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        cursor.close();
+        db.close();
     }
 
     @Override
