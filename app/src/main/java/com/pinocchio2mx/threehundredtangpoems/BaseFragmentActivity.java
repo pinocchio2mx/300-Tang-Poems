@@ -28,7 +28,7 @@ public abstract class BaseFragmentActivity extends AppCompatActivity {
         if(fragment == null){
             fragment = getFragment();
             fm.beginTransaction()
-                    .add(R.id.fragment_container,fragment)
+                    .add(R.id.fragment_container,fragment,"1")
                     .commit();
         }
 

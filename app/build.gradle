@@ -29,5 +29,6 @@ dependencies {
     compile "com.android.support:support-v4:${supportLibVersion}"
     compile "com.android.support:recyclerview-v7:${supportLibVersion}"
     compile "com.android.support:design:${supportLibVersion}"
+    compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
     testCompile 'junit:junit:4.12'
 }

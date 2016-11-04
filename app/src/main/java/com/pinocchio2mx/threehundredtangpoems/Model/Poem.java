@@ -1,10 +1,12 @@
 package com.pinocchio2mx.threehundredtangpoems.model;
 
+import java.io.Serializable;
+
 /**
  * Created by pinocchio2mx on 2016/10/28.
  */
 
-public class Poem {
+public class Poem implements Serializable {
     private String mTitle;
     private String mAuthor;
     private String mContent;

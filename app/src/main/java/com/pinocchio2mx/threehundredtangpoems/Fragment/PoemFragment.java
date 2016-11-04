@@ -1,13 +1,19 @@
 package com.pinocchio2mx.threehundredtangpoems.fragment;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.pinocchio2mx.threehundredtangpoems.R;
+import com.pinocchio2mx.threehundredtangpoems.model.Poem;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -25,10 +31,16 @@ public class PoemFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private Poem mPoem;
     private String mParam2;
 
     private OnTextSelectedListener mListener;
+
+    private static Typeface mTypeface;
+
+    private TextView vTitle;
+    private TextView vAuthor;
+    private TextView vContent;
 
 
 
@@ -45,11 +57,11 @@ public class PoemFragment extends Fragment {
      * @return A new instance of fragment PoemFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PoemFragment newInstance(String param1, String param2) {
+    public static PoemFragment newInstance(Poem poem) {
         PoemFragment fragment = new PoemFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable(ARG_PARAM1 , poem);
+//        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,8 +70,8 @@ public class PoemFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mPoem = (Poem)getArguments().getSerializable(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -67,10 +79,31 @@ public class PoemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_poem, container, false);
+        View v = inflater.inflate(R.layout.fragment_poem, container, false);
+        vTitle = (TextView)v.findViewById(R.id.work_title);
+        vAuthor =(TextView)v.findViewById(R.id.work_info);
+
+        vContent =(TextView)v.findViewById(R.id.work_content);
 
 
-        return  view;
+        updateUI();
+
+
+
+
+        return  v;
+    }
+
+    private void updateUI() {
+        if (mTypeface == null) {
+            mTypeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/simsun.ttc");
+        }
+        vContent.setTypeface(mTypeface);
+
+
+        vTitle.setText(mPoem.getTitle());
+        vAuthor.setText(mPoem.getAuthor());
+        vContent.setText(mPoem.getContent());
     }
 
     // TODO: Rename method, update argument and hook method into UI event
