@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+<<<<<<< HEAD
 import com.pinocchio2mx.threehundredtangpoems.MainActivity;
 import com.pinocchio2mx.threehundredtangpoems.PoemPagerActivity;
 import com.pinocchio2mx.threehundredtangpoems.R;
@@ -20,17 +21,28 @@ import com.pinocchio2mx.threehundredtangpoems.model.Poem;
 
 import static com.pinocchio2mx.threehundredtangpoems.PoemPagerActivity.newIntent;
 
+=======
+import com.pinocchio2mx.threehundredtangpoems.PoemPagerActivity;
+import com.pinocchio2mx.threehundredtangpoems.R;
+import com.pinocchio2mx.threehundredtangpoems.model.Poem;
+
+>>>>>>> 024d67cd515d96232e18032ed2bea7456a52441f
 /**
  * Created by pinocchio2mx on 2016/11/3.
  */
 
 public class PoemListAdapter extends RecyclerViewCursorAdapter<PoemListAdapter.PoemListHolder> {
 
+<<<<<<< HEAD
     private Context mContext;
 
     public PoemListAdapter(Context context, Cursor c, int flags) {
         super(c);
         mContext =context;
+=======
+    public PoemListAdapter(Context context, Cursor c, int flags) {
+        super(c);
+>>>>>>> 024d67cd515d96232e18032ed2bea7456a52441f
     }
 
     @Override
@@ -42,9 +54,15 @@ public class PoemListAdapter extends RecyclerViewCursorAdapter<PoemListAdapter.P
 
     @Override
     public void onBindViewHolderCursor(final  PoemListHolder holder, Cursor cursor) {
+<<<<<<< HEAD
         holder.bindPoem(cursor);
 //        holder.mTitleTextView.setText(cursor.getString(cursor.getColumnIndex("work_title")));
 //        holder.mAuthorTextView.setText(cursor.getString(cursor.getColumnIndex("work_author")));
+=======
+        //holder.bindPoem(cursor);
+        holder.mTitleTextView.setText(cursor.getString(cursor.getColumnIndex("work_title")));
+        holder.mAuthorTextView.setText(cursor.getString(cursor.getColumnIndex("work_author")));
+>>>>>>> 024d67cd515d96232e18032ed2bea7456a52441f
     }
 
     @Override
@@ -56,23 +74,34 @@ public class PoemListAdapter extends RecyclerViewCursorAdapter<PoemListAdapter.P
 
 
 
+<<<<<<< HEAD
     public  class PoemListHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener{
+=======
+    public static class PoemListHolder extends RecyclerView.ViewHolder {
+>>>>>>> 024d67cd515d96232e18032ed2bea7456a52441f
         private TextView mTitleTextView;
         private TextView mAuthorTextView;
         private TextView mContenTextView;
         private Cursor mCursor;
+<<<<<<< HEAD
         private Poem mPoem;
 
         public PoemListHolder(View itemview) {
             super(itemview);
             itemview.setOnClickListener(this);
+=======
+
+        public PoemListHolder(View itemview) {
+            super(itemview);
+>>>>>>> 024d67cd515d96232e18032ed2bea7456a52441f
             mTitleTextView = (TextView)itemview.findViewById(R.id.title_textview);
             mAuthorTextView = (TextView)itemview.findViewById(R.id.author_textview);
             //mContenTextView. = (TextView)itemview.findViewById(R.id.content_textview);
         }
 
         public void bindPoem(final Cursor cursor){
+<<<<<<< HEAD
             mCursor = cursor;
 
             String title = mCursor.getString(mCursor.getColumnIndex("work_title"));
@@ -93,6 +122,11 @@ public class PoemListAdapter extends RecyclerViewCursorAdapter<PoemListAdapter.P
 //            mContext.startActivity(i);
 
             //ToastUitl.showToast(getActivity(),mPoem.getTitle()+" clicked !",Toast.LENGTH_SHORT);
+=======
+            mTitleTextView.setText(cursor.getString(cursor.getColumnIndex("work_title")));
+            mAuthorTextView.setText(cursor.getString(cursor.getColumnIndex("work_author")));
+            //mContenTextView.setText(mCursor.getString(mCursor.getColumnIndex("work_content")));
+>>>>>>> 024d67cd515d96232e18032ed2bea7456a52441f
         }
 
     }

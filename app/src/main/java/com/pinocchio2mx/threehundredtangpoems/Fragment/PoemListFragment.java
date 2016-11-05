@@ -123,8 +123,13 @@ public class PoemListFragment extends Fragment {
         }
     }
 
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> 024d67cd515d96232e18032ed2bea7456a52441f
 
 
     // TODO: Rename method, update argument and hook method into UI event
